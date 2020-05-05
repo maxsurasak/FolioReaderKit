@@ -484,7 +484,6 @@ func findHairlineImageViewUnderView(view: UIView?) -> UIImageView? {
     return nil
 }
 
-/// :nodoc:
 extension UINavigationController {
     
     open override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -507,8 +506,6 @@ extension UINavigationController {
  This fixes iOS 9 crash
  http://stackoverflow.com/a/32010520/517707
  */
-
-/// :nodoc:
 extension UIAlertController {
     open override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         return .portrait
@@ -519,7 +516,6 @@ extension UIAlertController {
     }
 }
 
-/// :nodoc:
 extension Array {
     
     /**
