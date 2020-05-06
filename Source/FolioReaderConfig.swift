@@ -149,7 +149,10 @@ open class FolioReaderConfig: NSObject {
 
     /// Go to saved position when open a book
     open var loadSavedPositionForCurrentBook = true
-    
+
+
+    /// Enable or disable hability to user change font styles on menu.
+    open var canChangeFontStyle = true
     // MARK: Quote image share
 
     /// Custom Quote logo
