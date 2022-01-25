@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         config.scrollDirection = epub.scrollDirection
 
         // See more at FolioReaderConfig.swift
-//        config.canChangeScrollDirection = false
+        config.canChangeFontStyle = false
 //        config.enableTTS = false
 //        config.displayTitle = true
 //        config.allowSharing = false

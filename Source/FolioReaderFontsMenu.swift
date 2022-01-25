@@ -13,6 +13,7 @@ public enum FolioReaderFont: Int {
     case lato
     case lora
     case raleway
+    case sarabun
 
     public static func folioReaderFont(fontName: String) -> FolioReaderFont? {
         var font: FolioReaderFont?
@@ -21,6 +22,7 @@ public enum FolioReaderFont: Int {
         case "lato": font = .lato
         case "lora": font = .lora
         case "raleway": font = .raleway
+        case "sarabun": font = .sarabun
         default: break
         }
         return font
@@ -32,6 +34,7 @@ public enum FolioReaderFont: Int {
         case .lato: return "lato"
         case .lora: return "lora"
         case .raleway: return "raleway"
+        case .sarabun: return "sarabun"
         }
     }
 }
@@ -170,14 +173,16 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
         fontName.addSegmentWithTitle("Lato", onSelectionImage: nil, offSelectionImage: nil)
         fontName.addSegmentWithTitle("Lora", onSelectionImage: nil, offSelectionImage: nil)
         fontName.addSegmentWithTitle("Raleway", onSelectionImage: nil, offSelectionImage: nil)
-
+        fontName.addSegmentWithTitle("Sarabun", onSelectionImage: nil, offSelectionImage: nil)
 //        fontName.segments[0].titleFont = UIFont(name: "Andada-Regular", size: 18)!
 //        fontName.segments[1].titleFont = UIFont(name: "Lato-Regular", size: 18)!
 //        fontName.segments[2].titleFont = UIFont(name: "Lora-Regular", size: 18)!
 //        fontName.segments[3].titleFont = UIFont(name: "Raleway-Regular", size: 18)!
 
         fontName.selectSegmentAtIndex(self.folioReader.currentFont.rawValue)
-        menuView.addSubview(fontName)
+        if self.readerConfig.canChangeFontStyle {
+             menuView.addSubview(fontName)
+        }
 
         // Separator 2
         let line2 = UIView(frame: CGRect(x: 0, y: fontName.frame.height+fontName.frame.origin.y, width: view.frame.width, height: 1))
@@ -278,8 +283,8 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
 
             self.folioReader.nightMode = Bool(index == 1)
 
-            UIView.animate(withDuration: 0.6, animations: {
-                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : self.readerConfig.daysModeNavBackground)
+           UIView.animate(withDuration: 0.6, animations: {
+                self.menuView.backgroundColor = (self.folioReader.nightMode ? self.readerConfig.nightModeBackground : UIColor.white)
             })
 
         } else if segmentView.tag == 2 {
@@ -295,38 +300,38 @@ class FolioReaderFontsMenu: UIViewController, SMSegmentViewDelegate, UIGestureRe
             self.folioReader.currentScrollDirection = index
         }
     }
-    
+
     // MARK: - Font slider changed
-    
+
     @objc func sliderValueChanged(_ sender: HADiscreteSlider) {
         guard
             (self.folioReader.readerCenter?.currentPage != nil),
             let fontSize = FolioReaderFontSize(rawValue: Int(sender.value)) else {
                 return
         }
-        
+
         self.folioReader.currentFontSize = fontSize
     }
-    
+
     // MARK: - Gestures
-    
+
     @objc func tapGesture() {
         dismiss()
-        
+
         if (self.readerConfig.shouldHideNavigationOnTap == false) {
             self.folioReader.readerCenter?.showBars()
         }
     }
-    
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer is UITapGestureRecognizer && touch.view == view {
             return true
         }
         return false
     }
-    
+
     // MARK: - Status Bar
-    
+
     override var prefersStatusBarHidden : Bool {
         return (self.readerConfig.shouldHideNavigationOnTap == true)
     }
