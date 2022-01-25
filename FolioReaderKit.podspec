@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.libraries  = "z"
   s.dependency 'SSZipArchive', '2.1.1'
-  s.dependency 'MenuItemKit', '3.1.3'
+  s.dependency 'MenuItemKit', '4.0.0'
   s.dependency 'ZFDragableModalTransition', '0.6'
   s.dependency 'AEXML', '4.3.3'
   s.dependency 'FontBlaster', '4.1.0'
