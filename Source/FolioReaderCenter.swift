@@ -1348,6 +1348,8 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         pageController.segmentedControlItems = [readerConfig.localizedContentsTitle, readerConfig.localizedHighlightsTitle]
 
         let nav = UINavigationController(rootViewController: pageController)
+        let navBackground = self.folioReader.isNight(self.readerConfig.nightModeNavBackground, self.readerConfig.daysModeNavBackground)
+        nav.navigationBar.backgroundColor = navBackground
         present(nav, animated: true, completion: nil)
     }
 
