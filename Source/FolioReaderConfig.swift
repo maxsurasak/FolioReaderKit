@@ -105,7 +105,16 @@ open class FolioReaderConfig: NSObject {
 
     /// Menu separator Color
     open var menuSeparatorColor = UIColor(rgba: "#D7D7D7")
+    
+    /// Menu text color
+    open var menuTextColorSelected = UIColor(rgba: "#6ACC50")
 
+    // Day mode nav color
+    open var daysModeNavBackground = UIColor.white
+
+    // Day mode nav color
+    open var nightModeNavBackground = UIColor(rgba: "#131313")
+    
     /// Menu text color
     open var menuTextColor = UIColor(rgba: "#767676")
 
@@ -131,7 +140,10 @@ open class FolioReaderConfig: NSObject {
 
     /// Enable or disable hability to user change scroll direction on menu.
     open var canChangeScrollDirection = true
-
+    
+    /// Enable or disable hability to user change font style on menu.
+    open var canChangeFontStyle = true
+    
     /// Should hide navigation bar on user tap
     open var shouldHideNavigationOnTap = true
 
